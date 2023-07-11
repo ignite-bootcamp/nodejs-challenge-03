@@ -1,0 +1,10 @@
+{
+  "name": "nodejs-challenge-03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "guivictorr",
+  "license": "MIT"
+}
