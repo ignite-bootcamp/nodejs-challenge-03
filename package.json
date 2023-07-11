@@ -3,8 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src -d build"
+  },
   "keywords": [],
   "author": "guivictorr",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "node": "^20.4.0",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  }
 }
