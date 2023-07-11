@@ -6,17 +6,27 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "build": "tsup src -d build"
+    "build": "tsup src -d build",
+    "lint": "eslint src --ext .ts --fix"
   },
   "keywords": [],
   "author": "guivictorr",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "eslint": "8.44.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-config-standard-with-typescript": "36.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "15.7.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-promise": "6.1.1",
     "node": "^20.4.0",
+    "prettier": "3.0.0",
     "tsup": "^7.1.0",
     "tsx": "3.12.7",
-    "typescript": "^5.1.6"
+    "typescript": "5.1.6"
   },
   "dependencies": {
     "fastify": "4.19.2"
