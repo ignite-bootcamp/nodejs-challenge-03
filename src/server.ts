@@ -1,6 +1,6 @@
 import fastify from 'fastify';
+import { env } from './env';
 
-const PORT = 3333;
 export const app = fastify();
 
 app.get('/', (request, reply) => {
@@ -10,10 +10,10 @@ app.get('/', (request, reply) => {
 app
   .listen({
     host: '0.0.0.0',
-    port: PORT,
+    port: env.PORT,
   })
   .then(() => {
-    console.log(`Server is running ${PORT}`);
+    console.log(`Server is running ${env.PORT}`);
   })
   .catch(error => {
     if (error instanceof Error) {
