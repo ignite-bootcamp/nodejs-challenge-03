@@ -1,11 +1,5 @@
-import fastify from 'fastify';
 import { env } from './env';
-
-export const app = fastify();
-
-app.get('/', (request, reply) => {
-  return reply.send({ message: 'hello' });
-});
+import { app } from './app';
 
 app
   .listen({
