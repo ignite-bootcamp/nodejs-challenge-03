@@ -61,6 +61,8 @@ model Org {
   email         String  @unique
   cep           String  @db.VarChar(8)
   address       String  @db.VarChar(150)
+  uf            String  @db.Char(2)
+  city          String  @db.VarChar(50)
   latitude      Decimal
   longitude     Decimal
   cellphone     String  @db.VarChar(14)
