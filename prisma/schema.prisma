@@ -34,8 +34,8 @@ model Image {
   publicId String  @unique
   format   String
   version  String
-  Pet      Pet?    @relation(fields: [petId], references: [id])
-  petId    String?
+  pet      Pet?    @relation(fields: [pet_id], references: [id])
+  pet_id   String?
 
   @@map("images")
 }
@@ -49,23 +49,25 @@ model Pet {
   energy       Energy
   requirements String[]
   images       Image[]
-  Org          Org?     @relation(fields: [orgId], references: [id])
-  orgId        String?
+  created_at   DateTime @default(now())
+  org          Org?     @relation(fields: [org_id], references: [id])
+  org_id       String?
 
   @@map("pets")
 }
 
 model Org {
-  id            String  @id @default(uuid())
+  id            String   @id @default(uuid())
   owner         String
-  email         String  @unique
-  cep           String  @db.VarChar(8)
-  address       String  @db.VarChar(150)
-  uf            String  @db.Char(2)
-  city          String  @db.VarChar(50)
+  email         String   @unique
+  cep           String   @db.VarChar(8)
+  address       String   @db.VarChar(150)
+  uf            String   @db.Char(2)
+  city          String   @db.VarChar(50)
   latitude      Decimal
   longitude     Decimal
-  cellphone     String  @db.VarChar(14)
+  cellphone     String   @db.VarChar(14)
+  created_at    DateTime @default(now())
   password_hash String
   pets          Pet[]
 
