@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 
 import { ImagesRepository } from '@/repositories/images-repository';
 
-export class InMemoryPetsRepository implements ImagesRepository {
+export class InMemoryImagesRepository implements ImagesRepository {
   public items: Image[] = [];
 
   async create(pet: Prisma.ImageUncheckedCreateInput) {
