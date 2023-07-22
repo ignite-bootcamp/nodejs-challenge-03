@@ -23,4 +23,8 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return newPet;
   }
+
+  async findById(id: string) {
+    return this.items.find(item => item.id === id) ?? null;
+  }
 }
