@@ -6,7 +6,7 @@ import { OrgsRepository } from '@/repositories/orgs-repository';
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Org[] = [];
 
-  async create(org: Prisma.OrgCreateInput): Promise<Org> {
+  async create(org: Prisma.OrgCreateInput) {
     const newOrg: Org = {
       ...org,
       created_at: new Date(),
@@ -20,7 +20,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     return newOrg;
   }
 
-  async findByEmail(email: string): Promise<Org | null> {
+  async findByEmail(email: string) {
     return this.items.find(item => item.email.includes(email)) ?? null;
   }
 
