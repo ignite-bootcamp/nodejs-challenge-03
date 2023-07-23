@@ -3,13 +3,16 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { FindPetUseCase } from './find-pet';
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository';
 
 let petsRepository: InMemoryPetsRepository;
+let orgsRepository: InMemoryOrgsRepository;
 let sut: FindPetUseCase;
 
 describe('Register org use case', () => {
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository();
+    orgsRepository = new InMemoryOrgsRepository();
+    petsRepository = new InMemoryPetsRepository(orgsRepository);
     sut = new FindPetUseCase(petsRepository);
   });
 

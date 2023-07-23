@@ -5,12 +5,12 @@ import {
   FindManyQueries,
   PetsRepository,
 } from '@/repositories/pets-repository';
-import { InMemoryOrgsRepository } from './in-memory-orgs-repository';
-
-const orgsRepository = new InMemoryOrgsRepository();
+import { OrgsRepository } from '../orgs-repository';
 
 export class InMemoryPetsRepository implements PetsRepository {
   public items: Pet[] = [];
+
+  constructor(private orgsRepository: OrgsRepository) {}
 
   async create(pet: Prisma.PetUncheckedCreateInput) {
     const newPet: Pet = {
@@ -35,15 +35,15 @@ export class InMemoryPetsRepository implements PetsRepository {
   }
 
   async findMany(city: string, queries: FindManyQueries): Promise<Pet[]> {
-    const orgs = await orgsRepository.findMany({ city });
+    const orgs = await this.orgsRepository.findMany({ city });
     const orgIds: string[] = orgs.map(org => org.id);
 
     const filteredPets: Pet[] = this.items.filter(
       pet =>
         orgIds.includes(pet.org_id) &&
-        (pet.age === queries.age ||
-          pet.energy === queries.energy ||
-          pet.size === queries.size),
+        (!queries.age || pet.age === queries.age) &&
+        (!queries.energy || pet.energy === queries.energy) &&
+        (!queries.size || pet.size === queries.size),
     );
 
     return filteredPets;

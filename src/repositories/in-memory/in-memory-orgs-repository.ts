@@ -29,8 +29,12 @@ export class InMemoryOrgsRepository implements OrgsRepository {
   }
 
   async findMany({ city }: FindManyProps) {
-    return city
-      ? this.items.filter(item => item.city.includes(city))
-      : this.items;
+    return this.items.filter(item => {
+      if (city) {
+        return item.city.includes(city);
+      }
+
+      return item;
+    });
   }
 }

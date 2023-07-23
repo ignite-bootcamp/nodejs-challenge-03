@@ -1,7 +1,8 @@
+import { Age, Energy, Pet, Size } from '@prisma/client';
+
 import { ImagesRepository } from '@/repositories/images-repository';
 import { OrgsRepository } from '@/repositories/orgs-repository';
 import { PetsRepository } from '@/repositories/pets-repository';
-import { Age, Energy, Pet, Size } from '@prisma/client';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 interface CreatePetUseCaseRequest {

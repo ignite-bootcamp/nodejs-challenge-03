@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { hash } from 'bcryptjs';
 
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository';
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository';
 import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository';
 import { CreatePetUseCase } from './create-pet';
-import { hash } from 'bcryptjs';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 let orgsRepository: InMemoryOrgsRepository;
@@ -15,7 +15,7 @@ let sut: CreatePetUseCase;
 describe('Register org use case', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository();
-    petsRepository = new InMemoryPetsRepository();
+    petsRepository = new InMemoryPetsRepository(orgsRepository);
     imagesRepository = new InMemoryImagesRepository();
     sut = new CreatePetUseCase(
       petsRepository,

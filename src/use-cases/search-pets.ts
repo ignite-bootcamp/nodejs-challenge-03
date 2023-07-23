@@ -1,6 +1,5 @@
-import { PetsRepository } from '@/repositories/pets-repository';
 import { Age, Energy, Pet, Size } from '@prisma/client';
-import { NoContentError } from './errors/no-content-error';
+import { PetsRepository } from '@/repositories/pets-repository';
 
 interface SearchPetsUseCaseRequest {
   city: string;
@@ -27,10 +26,6 @@ export class SearchPetsUseCase {
       size: queries?.size,
       energy: queries?.energy,
     });
-
-    if (pets.length <= 0) {
-      throw new NoContentError();
-    }
 
     return {
       pets,
