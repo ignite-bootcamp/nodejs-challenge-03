@@ -1,7 +1,7 @@
 import { Prisma, Org } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 
-import { OrgsRepository } from '@/repositories/orgs-repository';
+import { FindManyProps, OrgsRepository } from '@/repositories/orgs-repository';
 
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Org[] = [];
@@ -26,5 +26,11 @@ export class InMemoryOrgsRepository implements OrgsRepository {
 
   async findById(id: string): Promise<Org | null> {
     return this.items.find(item => item.id === id) ?? null;
+  }
+
+  async findMany({ city }: FindManyProps) {
+    return city
+      ? this.items.filter(item => item.city.includes(city))
+      : this.items;
   }
 }

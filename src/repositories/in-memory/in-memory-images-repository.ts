@@ -11,7 +11,7 @@ export class InMemoryImagesRepository implements ImagesRepository {
       id: randomUUID(),
       format: pet.format,
       version: pet.version,
-      pet_id: pet.pet_id ?? null,
+      pet_id: pet.pet_id,
       publicId: pet.publicId,
     };
 

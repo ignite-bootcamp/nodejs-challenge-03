@@ -30,12 +30,12 @@ enum Energy {
 }
 
 model Image {
-  id       String  @id @default(uuid())
-  publicId String  @unique
+  id       String @id @default(uuid())
+  publicId String @unique
   format   String
   version  String
-  pet      Pet?    @relation(fields: [pet_id], references: [id])
-  pet_id   String?
+  pet      Pet    @relation(fields: [pet_id], references: [id])
+  pet_id   String
 
   @@map("images")
 }
@@ -50,8 +50,8 @@ model Pet {
   requirements String[]
   images       Image[]
   created_at   DateTime @default(now())
-  org          Org?     @relation(fields: [org_id], references: [id])
-  org_id       String?
+  org          Org      @relation(fields: [org_id], references: [id])
+  org_id       String
 
   @@map("pets")
 }
