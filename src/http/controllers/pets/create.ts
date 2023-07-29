@@ -46,6 +46,8 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       org_id,
       ...body,
     });
+
+    return reply.status(204).send();
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
       return reply.status(404).send({ message: error.message });
