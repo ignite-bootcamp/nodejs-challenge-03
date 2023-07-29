@@ -25,7 +25,10 @@ export class PrismaPetsRepository implements PetsRepository {
       where: {
         ...filteredQueries,
         org: {
-          city,
+          city: {
+            contains: city,
+            mode: 'insensitive',
+          },
         },
       },
     });
