@@ -10,7 +10,7 @@ export async function createAndAuthenticateOrg(app: FastifyInstance) {
     data: {
       id: org_id,
       owner: 'John Doe',
-      email: 'johndoe@example.com',
+      email: `${org_id}@example.com`,
       cep: '12345678',
       address: 'John doe street 132',
       uf: 'RN',
@@ -22,10 +22,12 @@ export async function createAndAuthenticateOrg(app: FastifyInstance) {
     },
   });
 
-  const response = await request(app.server).post('/sessions').send({
-    email: 'johndoe@example.com',
-    password: '123456',
-  });
+  const response = await request(app.server)
+    .post('/sessions')
+    .send({
+      email: `${org_id}@example.com`,
+      password: '123456',
+    });
 
   const { token } = response.body;
 
