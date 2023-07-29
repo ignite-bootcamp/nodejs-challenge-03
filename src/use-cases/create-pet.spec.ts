@@ -59,7 +59,7 @@ describe('Register org use case', () => {
     expect(pet.org_id).toEqual(id);
   });
 
-  it.todo('should not create a pet with invalid org', async () => {
+  it('should not create a pet with invalid org', async () => {
     await expect(() => {
       return sut.execute({
         org_id: 'invalid-org-id',

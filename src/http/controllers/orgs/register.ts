@@ -26,6 +26,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     const registerUseCase = new RegisterOrgUseCase(orgsRepository);
 
     await registerUseCase.execute(parsedBody);
+
+    return reply.status(204).send();
   } catch (error) {
     if (error instanceof OrgAlreadyExistsError) {
       return reply.status(409).send({ message: error.message });

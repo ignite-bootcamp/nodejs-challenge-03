@@ -24,10 +24,11 @@ interface RegisterOrgUseCaseResponse {
 export class RegisterOrgUseCase {
   constructor(private orgsRepository: OrgsRepository) {}
 
-  async execute(
-    request: RegisterOrgUseCaseRequest,
-  ): Promise<RegisterOrgUseCaseResponse> {
-    const password_hash = await hash(request.password, 6);
+  async execute({
+    password,
+    ...request
+  }: RegisterOrgUseCaseRequest): Promise<RegisterOrgUseCaseResponse> {
+    const password_hash = await hash(password, 6);
 
     const orgWithSameEmail = await this.orgsRepository.findByEmail(
       request.email,

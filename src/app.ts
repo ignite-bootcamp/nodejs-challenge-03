@@ -37,5 +37,7 @@ app.setErrorHandler((error, _, reply) => {
     // implement a tool to log errors in production
   }
 
+  console.log(error.message);
+
   return reply.status(500).send({ message: 'Internal server error' });
 });
